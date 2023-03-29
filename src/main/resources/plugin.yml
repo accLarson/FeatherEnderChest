@@ -1,6 +1,6 @@
 name: FeatherEnderChest
 version: '${project.version}'
-main: com.zerek.featherenderchest.FeatherEnderChest
+main: dev.zerek.featherenderchest.FeatherEnderChest
 api-version: 1.18
 authors: [ Zerek ]
 description: Blocks ender chests

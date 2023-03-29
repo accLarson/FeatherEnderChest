@@ -1,2 +1,1 @@
-cancel: "<#c0a1d1> Ender chests are disabled on f64. /tip enderchest"
-warn: "<#c0a1d1>Ender chests are disabled on f64 but can be broken to obtain 64 obsidian."
+cancel: "<#656b96> Ender chests are disabled on f64. <#949bd1>/tip enderchest"

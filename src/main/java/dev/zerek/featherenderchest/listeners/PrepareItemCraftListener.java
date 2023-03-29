@@ -1,6 +1,6 @@
-package com.zerek.featherenderchest.listeners;
+package dev.zerek.featherenderchest.listeners;
 
-import com.zerek.featherenderchest.FeatherEnderChest;
+import dev.zerek.featherenderchest.FeatherEnderChest;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
@@ -18,13 +18,18 @@ public class PrepareItemCraftListener implements Listener {
 
     @EventHandler
     public void craftItem(PrepareItemCraftEvent event) {
-        if (event.getRecipe() != null) {
-            Material itemType = event.getRecipe().getResult().getType();
-            if (itemType == Material.ENDER_CHEST && !event.getViewers().stream().allMatch(he -> he.hasPermission("feather.enderchest.access"))) {
-                event.getInventory().setResult(new ItemStack(Material.AIR));
-                event.getViewers().forEach(he -> he.sendActionBar(MiniMessage.get().parse((String) plugin.getConfigMap().get("cancel-actionbar"))));
-                event.getInventory().close();
 
+        if (event.getRecipe() != null) {
+
+            Material itemType = event.getRecipe().getResult().getType();
+
+            if (itemType == Material.ENDER_CHEST && !event.getViewers().stream().allMatch(he -> he.hasPermission("feather.enderchest.access"))) {
+
+                event.getInventory().setResult(new ItemStack(Material.AIR));
+
+                event.getViewers().forEach(he -> he.sendMessage(MiniMessage.miniMessage().deserialize((String) plugin.getConfigMap().get("cancel"))));
+
+                event.getInventory().close();
             }
         }
     }

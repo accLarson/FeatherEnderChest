@@ -1,6 +1,6 @@
-package com.zerek.featherenderchest.listeners;
+package dev.zerek.featherenderchest.listeners;
 
-import com.zerek.featherenderchest.FeatherEnderChest;
+import dev.zerek.featherenderchest.FeatherEnderChest;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
@@ -17,11 +17,12 @@ public class BlockPlaceListener implements Listener {
 
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event){
+
         if (event.getBlock().getType() == Material.ENDER_CHEST && !event.getPlayer().hasPermission("feather.enderchest.access")){
+
             event.setCancelled(true);
-            event.getPlayer().sendActionBar(MiniMessage.get().parse((String) plugin.getConfigMap().get("cancel-actionbar")));
 
-
+            event.getPlayer().sendMessage(MiniMessage.miniMessage().deserialize((String) plugin.getConfigMap().get("cancel")));
         }
     }
 }
