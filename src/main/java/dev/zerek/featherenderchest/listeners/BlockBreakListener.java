@@ -8,9 +8,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.Random;
+
 public class BlockBreakListener implements Listener {
 
     private final FeatherEnderChest plugin;
+
+    Random rand = new Random();
 
     public BlockBreakListener(FeatherEnderChest plugin) {
 
@@ -24,7 +28,9 @@ public class BlockBreakListener implements Listener {
 
             event.setDropItems(false);
 
-            event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.OBSIDIAN,64));
+            int dropCount = rand.nextInt(57) + 8;
+
+            event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.OBSIDIAN,dropCount));
         }
     }
 }
