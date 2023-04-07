@@ -1,7 +1,7 @@
 package dev.zerek.featherenderchest.listeners;
 
 import dev.zerek.featherenderchest.FeatherEnderChest;
-import net.kyori.adventure.text.minimessage.MiniMessage;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,7 +20,7 @@ public class BlockBreakListener implements Listener {
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
 
-        if (event.getBlock().getType() == Material.ENDER_CHEST) {
+        if (event.getBlock().getType() == Material.ENDER_CHEST && event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
 
             event.setDropItems(false);
 
