@@ -24,13 +24,16 @@ public class BlockBreakListener implements Listener {
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
 
-        if (event.getBlock().getType() == Material.ENDER_CHEST && event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
+        if (!event.isCancelled()) {
 
-            event.setDropItems(false);
+            if (event.getBlock().getType() == Material.ENDER_CHEST && event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
 
-            int dropCount = rand.nextInt(57) + 8;
+                event.setDropItems(false);
 
-            event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.OBSIDIAN,dropCount));
+                int dropCount = rand.nextInt(57) + 8;
+
+                event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.OBSIDIAN, dropCount));
+            }
         }
     }
 }
