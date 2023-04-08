@@ -4,6 +4,7 @@ import dev.zerek.featherenderchest.FeatherEnderChest;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
@@ -21,19 +22,16 @@ public class BlockBreakListener implements Listener {
         this.plugin = plugin;
     }
 
-    @EventHandler
+    @EventHandler (priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onBlockBreak(BlockBreakEvent event) {
 
-        if (!event.isCancelled()) {
+        if (event.getBlock().getType() == Material.ENDER_CHEST && event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
 
-            if (event.getBlock().getType() == Material.ENDER_CHEST && event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
+            event.setDropItems(false);
 
-                event.setDropItems(false);
+            int dropCount = rand.nextInt(57) + 8;
 
-                int dropCount = rand.nextInt(57) + 8;
-
-                event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.OBSIDIAN, dropCount));
-            }
+            event.getBlock().getWorld().dropItemNaturally(event.getBlock().getLocation(), new ItemStack(Material.OBSIDIAN, dropCount));
         }
     }
 }
