@@ -22,7 +22,7 @@ public class BlockBreakListener implements Listener {
         this.plugin = plugin;
     }
 
-    @EventHandler (priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler (priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onBlockBreak(BlockBreakEvent event) {
 
         if (event.getBlock().getType() == Material.ENDER_CHEST && event.getPlayer().getGameMode() == GameMode.SURVIVAL) {

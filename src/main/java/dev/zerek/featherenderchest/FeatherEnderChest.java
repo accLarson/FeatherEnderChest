@@ -1,9 +1,6 @@
 package dev.zerek.featherenderchest;
 
-import dev.zerek.featherenderchest.listeners.BlockBreakListener;
-import dev.zerek.featherenderchest.listeners.BlockPlaceListener;
-import dev.zerek.featherenderchest.listeners.PlayerInteractListener;
-import dev.zerek.featherenderchest.listeners.PrepareItemCraftListener;
+import dev.zerek.featherenderchest.listeners.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
@@ -20,12 +17,10 @@ public final class FeatherEnderChest extends JavaPlugin {
         getConfig().getKeys(false).forEach(c -> configMap.put(c,getConfig().get(c)));
 
         this.getServer().getPluginManager().registerEvents(new PlayerInteractListener(this),this);
-
         this.getServer().getPluginManager().registerEvents(new PrepareItemCraftListener(this),this);
-
         this.getServer().getPluginManager().registerEvents(new BlockPlaceListener(this),this);
-
         this.getServer().getPluginManager().registerEvents(new BlockBreakListener(this),this);
+        this.getServer().getPluginManager().registerEvents(new CrafterCraftListener(),this);
     }
 
     @Override
